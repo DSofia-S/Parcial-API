@@ -15,3 +15,17 @@ class Autor(models.Model):
         db_table='T001Autor'
         verbose_name='Autor'
         verbose_name_plural='Autores'
+class Editorial(models.Model):
+    Id_Editorial = models.AutoField(primary_key=True, editable=False, db_column='T002IdEditorial')
+    Nombre = models.CharField(max_length=100, db_column='T002Nombre')
+    Direccion = models.CharField(max_length=200, db_column='T002Direccion')
+    Telefono = models.CharField(max_length=15, db_column='T002Telefono')
+
+    def __str__(self):
+        return self.Nombre
+
+    class Meta:
+        db_table='T002Editorial'
+        verbose_name='Editorial'
+        verbose_name_plural='Editoriales'
+        
