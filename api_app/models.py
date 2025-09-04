@@ -64,3 +64,18 @@ class Miembro(models.Model):
         db_table='T004Miembro'
         verbose_name='Miembro'
         verbose_name_plural='Miembros'
+
+class Prestamo(models.Model):
+    Id_Prestamo = models.AutoField(primary_key=True, editable=False, db_column='T005IdPrestamo')
+    Id_Miembro = models.ForeignKey(Miembro, on_delete=models.CASCADE, db_column='T005IdMiembro')
+    Id_Libro = models.ForeignKey(Libro, on_delete=models.CASCADE, db_column='T005IdLibro')
+    Fecha_Prestamo = models.DateField(db_column='T005FechaPrestamo')
+    Fecha_Devolucion = models.DateField(db_column='T005FechaDevolucion')
+
+    def __str__(self):
+        return f"Prestamo {self.Id_Prestamo}"
+
+    class Meta:
+        db_table='T005Prestamo'
+        verbose_name='Prestamo'
+        verbose_name_plural='Prestamos'
