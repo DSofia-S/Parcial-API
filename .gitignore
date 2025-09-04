@@ -1,1 +1,3 @@
-parcial_api/settings.py
+parcial_api/settings.py 
+__pycache__/
+*.pyc

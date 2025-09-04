@@ -38,6 +38,8 @@ class Libro(models.Model):
     Resumen = models.CharField(max_length=500, db_column='T003Resumen')
     ISBN = models.CharField(max_length=13, unique=True, db_column='T003ISBN')
     Año_Pub = models.DateField(db_column='T003Año')
+    Id_Autor = models.ForeignKey(Autor, on_delete=models.CASCADE, db_column='T003IdAutor')
+    Id_Editorial = models.ForeignKey(Editorial, on_delete=models.CASCADE, db_column='T003IdEditorial')
 
     def __str__(self):
         return f"{self.Titulo}"
