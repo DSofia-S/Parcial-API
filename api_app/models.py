@@ -47,4 +47,20 @@ class Libro(models.Model):
     class Meta:
         db_table='T003Titulo'
         verbose_name='Titulo'
-        verbose_name_plural='Titulo'
+        verbose_name_plural='Titulos'
+
+# MIEMBRO
+class Miembro(models.Model):
+    Id_Miembro = models.AutoField(primary_key=True, editable=False, db_column='T004IdMiembro')
+    Nombre = models.CharField(max_length=100, db_column='T004Nombre')
+    Apellido = models.CharField(max_length=100, db_column='T004Apellido')
+    Email = models.CharField(max_length=10, db_column='T004Email')
+    Fecha_Mem = models.DateField(db_column='T004Fecha')
+
+    def __str__(self):
+        return self.Nombre
+
+    class Meta:
+        db_table='T004Miembro'
+        verbose_name='Miembro'
+        verbose_name_plural='Miembros'
