@@ -3,8 +3,8 @@ from django.shortcuts import render
 from rest_framework.response import Response
 from rest_framework import generics , status
 from rest_framework.exceptions import NotFound
-from .serializers import AutorSerializer,TareaSerializer
-from .models import Autor,Tarea
+from .serializers import AutorSerializer,EditorialSerializer,LibroSerializer,MiembroSerializer,PrestamoSerializer
+from .models import Autor,Editorial,Libro,Miembro,Prestamo
 from django.shortcuts import get_object_or_404
 
 # Create your views here.
@@ -39,11 +39,17 @@ class ActualizarAutor(generics.UpdateAPIView):
 
     def put(self, request, pk):
         Autor=get_object_or_404(Autor, pk=pk)
-        Biografia=request.data.get('Biografia',None)
-
-        #Verificar si la biografia ha cambiado
-        if Biografia and Biografia != Autor.email:
-            serializer=AutorSerializer(Autor, data=request.data)
+        serializer=AutorSerializer(Autor, data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response({'success':True, 'detail':'Autor actualizado con éxito', 'data':serializer.data}, status=status.HTTP_200_OK)
 
 #Eliminar Autor
+class EliminarAutor(generics.DestroyAPIView):
+    queryset=Autor.objects.all()
+    serializer_class=AutorSerializer
 
+    def delete(self, request, pk):
+        Autor=get_object_or_404(Autor, pk=pk)
+        Autor.delete()
+        return Response({'success':True, 'detail':'Autor eliminado con éxito'}, status=status.HTTP_200_OK)
