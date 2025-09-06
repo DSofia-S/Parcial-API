@@ -9,6 +9,7 @@ from django.shortcuts import get_object_or_404
 
 # Create your views here.
 
+## CRUD AUTORES##
 #Crear Autores
 class CrearAutor(generics.CreateAPIView):
     queryset=Autor.objects.all()
@@ -53,3 +54,189 @@ class EliminarAutor(generics.DestroyAPIView):
         Autor=get_object_or_404(Autor, pk=pk)
         Autor.delete()
         return Response({'success':True, 'detail':'Autor eliminado con éxito'}, status=status.HTTP_200_OK)
+
+## CRUD EDITORIALES##
+#Crear editoriales
+class CrearEditorial(generics.CreateAPIView):
+    queryset=Editorial.objects.all()
+    serializer_class=EditorialSerializer
+
+    def post(self, request):
+        serializer=EditorialSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response({'seccess':True, 'detail':'Editorial creada con éxito', 'data':serializer.data}, status=status.HTTP_201_CREATED)
+    
+#Lista de editoriales
+class EditorialList(generics.ListCreateAPIView):
+    queryset = Editorial.objects.all()
+    serializer_class = EditorialSerializer
+
+    def get(self, request):
+        Editoriales=Editorial.objects.all()
+        serializer=EditorialSerializer(Editoriales, many=True)
+        if not Editoriales:
+            raise NotFound("No se encontraron Editoriales")
+        return Response ({'success': True, 'detail': 'Listado de editoriales', 'data': serializer.data}, status=status.HTTP_200_OK)
+    
+#Actualizar Editoriales
+class ActualizarEditorial (generics.UpdateAPIView):
+    queryset=Editorial.objects.all()
+    serializer_class=EditorialSerializer
+
+    def put(self, request, pk):
+        Editorial=get_object_or_404(Editorial, pk=pk)
+        serializer=EditorialSerializer(Editorial, data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response({'success':True, 'detail':'Editorial actualizada con éxito', 'data':serializer.data}, status=status.HTTP_200_OK)
+    
+#Eliminar Editorial
+class EliminarEditorial(generics.DestroyAPIView):
+    queryset=Editorial.objects.all()
+    serializer_class=EditorialSerializer
+
+    def delete(self, request, pk):
+        Editorial=get_object_or_404(Editorial, pk=pk)
+        Editorial.delete()
+        return Response({'success':True, 'detail':'Editorial eliminada con éxito'}, status=status.HTTP_200_OK)
+
+## CRUD LIBROS##
+#Crear Libros
+class CrearLibro(generics.CreateAPIView):
+    queryset=Libro.objects.all()
+    serializer_class=LibroSerializer
+
+    def post(self, request):
+        serializer=LibroSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response({'seccess':True, 'detail':'Libro creado con éxito', 'data':serializer.data}, status=status.HTTP_201_CREATED)
+    
+#Lista de libros
+class LibroList(generics.ListCreateAPIView):
+    queryset = Libro.objects.all()
+    serializer_class = LibroSerializer
+
+    def get(self, request):
+        Libros=Libros.objects.all()
+        serializer=LibroSerializer(Libros, many=True)
+        if not Libros:
+            raise NotFound("No se encontraron Libros")
+        return Response ({'success': True, 'detail': 'Listado de libros', 'data': serializer.data}, status=status.HTTP_200_OK)
+    
+#Actualizar libros
+class ActualizarLibro (generics.UpdateAPIView):
+    queryset=Libro.objects.all()
+    serializer_class=LibroSerializer
+
+    def put(self, request, pk):
+        Libro=get_object_or_404(Libro, pk=pk)
+        serializer=LibroSerializer(Libro, data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response({'success':True, 'detail':'Libro actualizado con éxito', 'data':serializer.data}, status=status.HTTP_200_OK)
+    
+#Eliminar Libro
+class EliminarLibro(generics.DestroyAPIView):
+    queryset=Libro.objects.all()
+    serializer_class=LibroSerializer
+
+    def delete(self, request, pk):
+        Libro=get_object_or_404(Libro, pk=pk)
+        Libro.delete()
+        return Response({'success':True, 'detail':'Libro eliminado con éxito'}, status=status.HTTP_200_OK)
+
+## CRUD MIEMBROS##
+#Crear Miembro
+class CrearMiembro(generics.CreateAPIView):
+    queryset=Miembro.objects.all()
+    serializer_class=MiembroSerializer
+
+    def post(self, request):
+        serializer=MiembroSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response({'seccess':True, 'detail':'Miembro creado con éxito', 'data':serializer.data}, status=status.HTTP_201_CREATED)
+    
+#Lista de miembros
+class MiembrosList(generics.ListCreateAPIView):
+    queryset = Miembro.objects.all()
+    serializer_class = MiembroSerializer
+
+    def get(self, request):
+        Miembros=Miembros.objects.all()
+        serializer=MiembroSerializer(Miembros, many=True)
+        if not Miembros:
+            raise NotFound("No se encontraron Miembros")
+        return Response ({'success': True, 'detail': 'Listado de Miembros', 'data': serializer.data}, status=status.HTTP_200_OK)
+    
+#Actualizar Miembros
+class ActualizarMiembro (generics.UpdateAPIView):
+    queryset=Miembro.objects.all()
+    serializer_class=MiembroSerializer
+
+    def put(self, request, pk):
+        Miembro=get_object_or_404(Miembro, pk=pk)
+        serializer=MiembroSerializer(Miembro, data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response({'success':True, 'detail':'Miembro actualizado con éxito', 'data':serializer.data}, status=status.HTTP_200_OK)
+    
+#Eliminar Miembro
+class EliminarMiembro(generics.DestroyAPIView):
+    queryset=Miembro.objects.all()
+    serializer_class=MiembroSerializer
+
+    def delete(self, request, pk):
+        Miembro=get_object_or_404(Miembro, pk=pk)
+        Miembro.delete()
+        return Response({'success':True, 'detail':'Miembro eliminado con éxito'}, status=status.HTTP_200_OK)
+
+
+## CRUD PRESTAMO##
+#Crear Prestamo
+class CrearPrestamo(generics.CreateAPIView):
+    queryset=Prestamo.objects.all()
+    serializer_class=PrestamoSerializer
+
+    def post(self, request):
+        serializer=PrestamoSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response({'seccess':True, 'detail':'Prestamo creado con éxito', 'data':serializer.data}, status=status.HTTP_201_CREATED)
+    
+#Lista de prestamos
+class PrestamosList(generics.ListCreateAPIView):
+    queryset = Prestamo.objects.all()
+    serializer_class = PrestamoSerializer
+
+    def get(self, request):
+        Prestamos=Prestamos.objects.all()
+        serializer=PrestamoSerializer(Prestamos, many=True)
+        if not Prestamos:
+            raise NotFound("No se encontraron Prestamos")
+        return Response ({'success': True, 'detail': 'Listado de Prestamos', 'data': serializer.data}, status=status.HTTP_200_OK)
+    
+#Actualizar Prestamos
+class ActualizarPrestamos (generics.UpdateAPIView):
+    queryset=Prestamo.objects.all()
+    serializer_class=PrestamoSerializer
+
+    def put(self, request, pk):
+        Prestamo=get_object_or_404(Prestamo, pk=pk)
+        serializer=PrestamoSerializer(Prestamo, data=request.data)
+        serializer.is_valid(raise_exception=True)
+        serializer.save()
+        return Response({'success':True, 'detail':'Prestamo actualizado con éxito', 'data':serializer.data}, status=status.HTTP_200_OK)
+    
+#Eliminar Prestamo
+class EliminarPrestamo(generics.DestroyAPIView):
+    queryset=Prestamo.objects.all()
+    serializer_class=PrestamoSerializer
+
+    def delete(self, request, pk):
+        Prestamo=get_object_or_404(Prestamo, pk=pk)
+        Prestamo.delete()
+        return Response({'success':True, 'detail':'Prestamo eliminado con éxito'}, status=status.HTTP_200_OK)
+
