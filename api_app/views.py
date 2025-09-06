@@ -39,8 +39,8 @@ class ActualizarAutor(generics.UpdateAPIView):
     serializer_class=AutorSerializer
 
     def put(self, request, pk):
-        Autor=get_object_or_404(Autor, pk=pk)
-        serializer=AutorSerializer(Autor, data=request.data)
+        autor=get_object_or_404(Autor, pk=pk)
+        serializer=AutorSerializer(autor, data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response({'success':True, 'detail':'Autor actualizado con éxito', 'data':serializer.data}, status=status.HTTP_200_OK)
@@ -51,8 +51,8 @@ class EliminarAutor(generics.DestroyAPIView):
     serializer_class=AutorSerializer
 
     def delete(self, request, pk):
-        Autor=get_object_or_404(Autor, pk=pk)
-        Autor.delete()
+        autor=get_object_or_404(Autor, pk=pk)
+        autor.delete()
         return Response({'success':True, 'detail':'Autor eliminado con éxito'}, status=status.HTTP_200_OK)
 
 ## CRUD EDITORIALES##
@@ -85,8 +85,8 @@ class ActualizarEditorial (generics.UpdateAPIView):
     serializer_class=EditorialSerializer
 
     def put(self, request, pk):
-        Editorial=get_object_or_404(Editorial, pk=pk)
-        serializer=EditorialSerializer(Editorial, data=request.data)
+        editorial=get_object_or_404(Editorial, pk=pk)
+        serializer=EditorialSerializer(editorial, data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response({'success':True, 'detail':'Editorial actualizada con éxito', 'data':serializer.data}, status=status.HTTP_200_OK)
@@ -97,8 +97,8 @@ class EliminarEditorial(generics.DestroyAPIView):
     serializer_class=EditorialSerializer
 
     def delete(self, request, pk):
-        Editorial=get_object_or_404(Editorial, pk=pk)
-        Editorial.delete()
+        editorial=get_object_or_404(Editorial, pk=pk)
+        editorial.delete()
         return Response({'success':True, 'detail':'Editorial eliminada con éxito'}, status=status.HTTP_200_OK)
 
 ## CRUD LIBROS##
@@ -131,8 +131,8 @@ class ActualizarLibro (generics.UpdateAPIView):
     serializer_class=LibroSerializer
 
     def put(self, request, pk):
-        Libro=get_object_or_404(Libro, pk=pk)
-        serializer=LibroSerializer(Libro, data=request.data)
+        libro=get_object_or_404(Libro, pk=pk)
+        serializer=LibroSerializer(libro, data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response({'success':True, 'detail':'Libro actualizado con éxito', 'data':serializer.data}, status=status.HTTP_200_OK)
@@ -143,8 +143,8 @@ class EliminarLibro(generics.DestroyAPIView):
     serializer_class=LibroSerializer
 
     def delete(self, request, pk):
-        Libro=get_object_or_404(Libro, pk=pk)
-        Libro.delete()
+        libro=get_object_or_404(Libro, pk=pk)
+        libro.delete()
         return Response({'success':True, 'detail':'Libro eliminado con éxito'}, status=status.HTTP_200_OK)
 
 ## CRUD MIEMBROS##
@@ -177,8 +177,8 @@ class ActualizarMiembro (generics.UpdateAPIView):
     serializer_class=MiembroSerializer
 
     def put(self, request, pk):
-        Miembro=get_object_or_404(Miembro, pk=pk)
-        serializer=MiembroSerializer(Miembro, data=request.data)
+        miembro=get_object_or_404(Miembro, pk=pk)
+        serializer=MiembroSerializer(miembro, data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response({'success':True, 'detail':'Miembro actualizado con éxito', 'data':serializer.data}, status=status.HTTP_200_OK)
@@ -189,8 +189,8 @@ class EliminarMiembro(generics.DestroyAPIView):
     serializer_class=MiembroSerializer
 
     def delete(self, request, pk):
-        Miembro=get_object_or_404(Miembro, pk=pk)
-        Miembro.delete()
+        miembro=get_object_or_404(Miembro, pk=pk)
+        miembro.delete()
         return Response({'success':True, 'detail':'Miembro eliminado con éxito'}, status=status.HTTP_200_OK)
 
 
@@ -224,8 +224,8 @@ class ActualizarPrestamos (generics.UpdateAPIView):
     serializer_class=PrestamoSerializer
 
     def put(self, request, pk):
-        Prestamo=get_object_or_404(Prestamo, pk=pk)
-        serializer=PrestamoSerializer(Prestamo, data=request.data)
+        prestamo=get_object_or_404(Prestamo, pk=pk)
+        serializer=PrestamoSerializer(prestamo, data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response({'success':True, 'detail':'Prestamo actualizado con éxito', 'data':serializer.data}, status=status.HTTP_200_OK)
@@ -236,8 +236,8 @@ class EliminarPrestamo(generics.DestroyAPIView):
     serializer_class=PrestamoSerializer
 
     def delete(self, request, pk):
-        Prestamo=get_object_or_404(Prestamo, pk=pk)
-        Prestamo.delete()
+        prestamo=get_object_or_404(Prestamo, pk=pk)
+        prestamo.delete()
         return Response({'success':True, 'detail':'Prestamo eliminado con éxito'}, status=status.HTTP_200_OK)
 
 ## FILTROS ##
