@@ -240,3 +240,16 @@ class EliminarPrestamo(generics.DestroyAPIView):
         Prestamo.delete()
         return Response({'success':True, 'detail':'Prestamo eliminado con éxito'}, status=status.HTTP_200_OK)
 
+## FILTROS ##
+# Buscar libros autor 
+class LibroByAutor(generics.ListAPIView):
+    serializer_class=LibroSerializer
+
+    def get (self, request, Nombre):
+        Libro=Libro.objects.filter(Nombre_Autor=Nombre).first()
+        if not Libro:
+            raise NotFound ("No se encontro un libro de ese autor")
+        serializer=LibroSerializer(Libro)
+        return Response ({'success':True, 'detail':'Libro encontrado','data':serializer.data},status=status.HTTP_200_OK)
+
+
