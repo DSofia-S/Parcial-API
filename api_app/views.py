@@ -243,13 +243,22 @@ class EliminarPrestamo(generics.DestroyAPIView):
 ## FILTROS ##
 # Buscar libros autor 
 class LibroByAutor(generics.ListAPIView):
-    serializer_class=LibroSerializer
+    serializer_class = LibroSerializer
 
-    def get (self, request, Nombre):
-        Libro=Libro.objects.filter(Nombre_Autor=Nombre).first()
-        if not Libro:
-            raise NotFound ("No se encontro un libro de ese autor")
-        serializer=LibroSerializer(Libro)
-        return Response ({'success':True, 'detail':'Libro encontrado','data':serializer.data},status=status.HTTP_200_OK)
+    def get(self, request, Nombre):
+        libros = Libro.objects.filter(
+            Q(Id_Autor_Nombre_icontains=Nombre) | 
+            Q(Id_Autor_Apellido_icontains=Nombre)
+        )
+
+        if not libros.exists():
+            raise NotFound("No se encontró un libro de ese autor")
+        
+        serializer = LibroSerializer(libros, many=True)
+        return Response({
+            'success': True,
+            'detail': 'Libros encontrados',
+            'data': serializer.data
+        }, status=status.HTTP_200_OK)
 
 
