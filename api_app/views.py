@@ -119,7 +119,7 @@ class LibroList(generics.ListCreateAPIView):
     serializer_class = LibroSerializer
 
     def get(self, request):
-        Libros=Libros.objects.all()
+        Libros=Libro.objects.all()
         serializer=LibroSerializer(Libros, many=True)
         if not Libros:
             raise NotFound("No se encontraron Libros")
@@ -165,7 +165,7 @@ class MiembrosList(generics.ListCreateAPIView):
     serializer_class = MiembroSerializer
 
     def get(self, request):
-        Miembros=Miembros.objects.all()
+        Miembros=Miembro.objects.all()
         serializer=MiembroSerializer(Miembros, many=True)
         if not Miembros:
             raise NotFound("No se encontraron Miembros")
@@ -212,7 +212,7 @@ class PrestamosList(generics.ListCreateAPIView):
     serializer_class = PrestamoSerializer
 
     def get(self, request):
-        Prestamos=Prestamos.objects.all()
+        Prestamos=Prestamo.objects.all()
         serializer=PrestamoSerializer(Prestamos, many=True)
         if not Prestamos:
             raise NotFound("No se encontraron Prestamos")
