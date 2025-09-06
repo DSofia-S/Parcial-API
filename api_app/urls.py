@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import AutorList, CrearAutor, ActualizarAutor, EliminarAutor, CrearEditorial, EditorialList, ActualizarEditorial, EliminarEditorial, CrearLibro, LibroList, ActualizarLibro, EliminarLibro, CrearMiembro, MiembrosList, ActualizarMiembro, EliminarMiembro,Prestamo, CrearPrestamo, PrestamosList, ActualizarPrestamos, EliminarPrestamo
+from .views import AutorList, CrearAutor, ActualizarAutor, EliminarAutor, CrearEditorial, EditorialList, ActualizarEditorial, EliminarEditorial, CrearLibro, LibroList, ActualizarLibro, EliminarLibro, CrearMiembro, MiembrosList, ActualizarMiembro, EliminarMiembro,Prestamo, CrearPrestamo, PrestamosList, ActualizarPrestamos, EliminarPrestamo, LibroByAutor
 
 
 urlpatterns = [
@@ -23,4 +23,6 @@ urlpatterns = [
     path('prestamos/crear/', CrearPrestamo.as_view(), name='crear-prestamo'),
     path('prestamos/actualizar/<int:pk>/', ActualizarPrestamos.as_view(), name='actualizar-prestamo'),
     path('prestamos/eliminar/<int:pk>/', EliminarPrestamo.as_view(), name='eliminar-prestamo'),
+    path('libros/autor/<str:Nombre>/', LibroByAutor.as_view(), name='libro-by-autor'),
+    
 ]
