@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import AutorList, CrearAutor, ActualizarAutor, EliminarAutor, CrearEditorial, EditorialList, ActualizarEditorial, EliminarEditorial, CrearLibro, LibroList, ActualizarLibro, EliminarLibro, CrearMiembro, MiembrosList, ActualizarMiembro, EliminarMiembro,Prestamo, CrearPrestamo, PrestamosList, ActualizarPrestamos, EliminarPrestamo
-from .views import Crear
+
 
 urlpatterns = [
     path('autores/', AutorList.as_view(), name='persona-list'),
