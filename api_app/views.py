@@ -300,13 +300,12 @@ class pertamobyfecha(generics.ListAPIView):
             'data': serializer.data
         }, status=status.HTTP_200_OK)
 
-# Buscar prestamo por miembro
 class prestamobymiembro(generics.ListAPIView):
     serializer_class = PrestamoSerializer
 
     def get(self, request, Nombre):
         prestamos = Prestamo.objects.filter(
-            Q(Id_Miembro__Nombre__icontains=Nombre)
+
         )
 
         if not prestamos.exists():
