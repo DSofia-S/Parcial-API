@@ -22,6 +22,6 @@ class MiembroSerializer(serializers.ModelSerializer):
         fields='__all__'
 
 class PrestamoSerializer(serializers.ModelSerializer):
-    class Prestamo:
+    class Meta:
         model=Prestamo
         fields='__all__'
