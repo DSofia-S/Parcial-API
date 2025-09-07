@@ -263,3 +263,39 @@ class LibroByAutor(generics.ListAPIView):
         }, status=status.HTTP_200_OK)
 
 
+class librobyeditorial(generics.ListAPIView):
+    serializer_class = LibroSerializer
+
+    def get(self, request, Nombre):
+        libros = Libro.objects.filter(
+            Q(Id_Editorial__Nombre__icontains=Nombre)
+        )
+
+        if not libros.exists():
+            raise NotFound("No se encontró un libro de esa editorial")
+        
+        serializer = LibroSerializer(libros, many=True)
+        return Response({
+            'success': True,
+            'detail': 'Libros encontrados',
+            'data': serializer.data
+        }, status=status.HTTP_200_OK)
+        
+
+class pertamobyfecha(generics.ListAPIView):
+    serializer_class = PrestamoSerializer
+
+    def get(self, request, Fecha_Prestamo):
+        prestamos = Prestamo.objects.filter(
+            Q(Fecha_Prestamo__icontains=Fecha_Prestamo)
+        )
+
+        if not prestamos.exists():
+            raise NotFound("No se encontró un prestamo en esa fecha")
+        
+        serializer = PrestamoSerializer(prestamos, many=True)
+        return Response({
+            'success': True,
+            'detail': 'Prestamos encontrados',
+            'data': serializer.data
+        }, status=status.HTTP_200_OK)
