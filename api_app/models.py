@@ -54,7 +54,7 @@ class Miembro(models.Model):
     Id_Miembro = models.AutoField(primary_key=True, editable=False, db_column='T004IdMiembro')
     Nombre = models.CharField(max_length=100, db_column='T004Nombre')
     Apellido = models.CharField(max_length=100, db_column='T004Apellido')
-    Email = models.CharField(max_length=50, db_column='T004Email')
+    Email = models.CharField(unique=True, db_column='T004Email')
     Fecha_Mem = models.DateField(db_column='T004Fecha')
 
     def __str__(self):
