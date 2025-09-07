@@ -5,6 +5,7 @@ from rest_framework import generics , status
 from rest_framework.exceptions import NotFound
 from .serializers import AutorSerializer,EditorialSerializer,LibroSerializer,MiembroSerializer,PrestamoSerializer
 from .models import Autor,Editorial,Libro,Miembro,Prestamo
+from django.db.models import Q
 from django.shortcuts import get_object_or_404
 
 # Create your views here.
@@ -247,8 +248,8 @@ class LibroByAutor(generics.ListAPIView):
 
     def get(self, request, Nombre):
         libros = Libro.objects.filter(
-            Q(Id_Autor_Nombre_icontains=Nombre) | 
-            Q(Id_Autor_Apellido_icontains=Nombre)
+            Q(Id_Autor__Nombre__icontains=Nombre) | 
+            Q(Id_Autor__Apellido__icontains=Nombre)
         )
 
         if not libros.exists():
