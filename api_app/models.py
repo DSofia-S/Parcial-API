@@ -54,7 +54,7 @@ class Miembro(models.Model):
     Id_Miembro = models.AutoField(primary_key=True, editable=False, db_column='T004IdMiembro')
     Nombre = models.CharField(max_length=100, db_column='T004Nombre')
     Apellido = models.CharField(max_length=100, db_column='T004Apellido')
-    Email = models.CharField(max_length=10, db_column='T004Email')
+    Email = models.CharField(max_length=50, db_column='T004Email')
     Fecha_Mem = models.DateField(db_column='T004Fecha')
 
     def __str__(self):
@@ -65,6 +65,7 @@ class Miembro(models.Model):
         verbose_name='Miembro'
         verbose_name_plural='Miembros'
 
+# PRESTAMO
 class Prestamo(models.Model):
     Id_Prestamo = models.AutoField(primary_key=True, editable=False, db_column='T005IdPrestamo')
     Id_Miembro = models.ForeignKey(Miembro, on_delete=models.CASCADE, db_column='T005IdMiembro')
