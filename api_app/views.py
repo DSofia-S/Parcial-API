@@ -299,3 +299,22 @@ class pertamobyfecha(generics.ListAPIView):
             'detail': 'Prestamos encontrados',
             'data': serializer.data
         }, status=status.HTTP_200_OK)
+        
+class prestamobymiembro(generics.ListAPIView):
+    serializer_class = PrestamoSerializer
+
+    def get(self, request, Nombre):
+        prestamos = Prestamo.objects.filter(
+            Q(Id_Miembro__Nombre__icontains=Nombre) | 
+            Q(Id_Miembro__Apellido__icontains=Nombre)
+        )
+
+        if not prestamos.exists():
+            raise NotFound("No se encontró un prestamo de ese miembro")
+        
+        serializer = PrestamoSerializer(prestamos, many=True)
+        return Response({
+            'success': True,
+            'detail': 'Prestamos encontrados',
+            'data': serializer.data
+        }, status=status.HTTP_200_OK)
