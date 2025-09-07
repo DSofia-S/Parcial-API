@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import AutorList, CrearAutor, ActualizarAutor, EliminarAutor, CrearEditorial, EditorialList, ActualizarEditorial, EliminarEditorial, CrearLibro, LibroList, ActualizarLibro, EliminarLibro, CrearMiembro, MiembrosList, ActualizarMiembro, EliminarMiembro,Prestamo, CrearPrestamo, PrestamosList, ActualizarPrestamos, EliminarPrestamo, LibroByAutor, librobyeditorial,pertamobyfecha
+from .views import AutorList, CrearAutor, ActualizarAutor, EliminarAutor, CrearEditorial, EditorialList, ActualizarEditorial, EliminarEditorial, CrearLibro, LibroList, ActualizarLibro, EliminarLibro, CrearMiembro, MiembrosList, ActualizarMiembro, EliminarMiembro,Prestamo, CrearPrestamo, PrestamosList, ActualizarPrestamos, EliminarPrestamo, LibroByAutor, librobyeditorial,pertamobyfecha,prestamobymiembro
 
 
 urlpatterns = [
@@ -25,4 +25,6 @@ urlpatterns = [
     path('prestamos/eliminar/<int:pk>/', EliminarPrestamo.as_view(), name='eliminar-prestamo'),
     path('libros/autor/<str:Nombre>/', LibroByAutor.as_view(), name='libro-by-autor'),
     path('libros/editorial/<str:Nombre>/', librobyeditorial.as_view(), name='libro-by-editorial'),
+    path('prestamos/fecha/<str:FechaPrestamo>/', pertamobyfecha.as_view(), name='prestamo-por-fecha'),
+    path('prestamos/miembro/<str:Nombre>/',prestamobymiembro.as_view(), name='prestamo-por-miembro')
 ]

@@ -262,7 +262,7 @@ class LibroByAutor(generics.ListAPIView):
             'data': serializer.data
         }, status=status.HTTP_200_OK)
 
-
+# Buscar libro por editorial
 class librobyeditorial(generics.ListAPIView):
     serializer_class = LibroSerializer
 
@@ -281,13 +281,13 @@ class librobyeditorial(generics.ListAPIView):
             'data': serializer.data
         }, status=status.HTTP_200_OK)
         
-
+# Buscar Prestamo por fecha de prestamo
 class pertamobyfecha(generics.ListAPIView):
     serializer_class = PrestamoSerializer
 
-    def get(self, request, Fecha_Prestamo):
+    def get(self, request, FechaPrestamo):
         prestamos = Prestamo.objects.filter(
-            Q(Fecha_Prestamo__icontains=Fecha_Prestamo)
+            Q(Fecha_Prestamo__icontains=FechaPrestamo)
         )
 
         if not prestamos.exists():
@@ -299,14 +299,13 @@ class pertamobyfecha(generics.ListAPIView):
             'detail': 'Prestamos encontrados',
             'data': serializer.data
         }, status=status.HTTP_200_OK)
-        
+
 class prestamobymiembro(generics.ListAPIView):
     serializer_class = PrestamoSerializer
 
     def get(self, request, Nombre):
         prestamos = Prestamo.objects.filter(
-            Q(Id_Miembro__Nombre__icontains=Nombre) | 
-            Q(Id_Miembro__Apellido__icontains=Nombre)
+
         )
 
         if not prestamos.exists():
