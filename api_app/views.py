@@ -20,7 +20,7 @@ class CrearAutor(generics.CreateAPIView):
         serializer=AutorSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
-        return Response({'seccess':True, 'detail':'Autor creado con éxito', 'data':serializer.data}, status=status.HTTP_201_CREATED)
+        return Response({'success':True, 'detail':'Autor creado con éxito', 'data':serializer.data}, status=status.HTTP_201_CREATED)
 
 # Lista Autor
 class AutorList(generics.ListCreateAPIView):
